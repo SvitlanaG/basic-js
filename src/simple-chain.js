@@ -1,26 +1,43 @@
 const CustomError = require("../extensions/custom-error");
 
 const chainMaker = {
+  finishedChain: [],
   getLength() {
-    throw new CustomError('Not implemented');
-    // remove line with error and write your code here
+    return this.finishedChain.length;
   },
   addLink(value) {
-    throw new CustomError('Not implemented');
-    // remove line with error and write your code here
+    if (typeof value === undefined) {
+      this.finishedChain.push(`( )`);
+    } else {
+      this.finishedChain.push(`( ${value} )`);
+    }
+
+    return this;
   },
   removeLink(position) {
-    throw new CustomError('Not implemented');
-    // remove line with error and write your code here
+    if (
+      !Number.isInteger(position) ||
+      position > this.getLength() ||
+      position <= 0
+    ) {
+      throw new Error("Wrong number");
+    } else {
+      this.finishedChain.splice(position - 1, 1);
+    }
+    return this;
   },
   reverseChain() {
-    throw new CustomError('Not implemented');
-    // remove line with error and write your code here
+    this.finishedChain.reverse();
+    return this;
   },
+  newStr: "",
   finishChain() {
-    throw new CustomError('Not implemented');
-    // remove line with error and write your code here
-  }
+    this.newStr = this.finishedChain.join("~~");
+    this.finishedChain = [];
+    return this.newStr;
+  },
 };
 
 module.exports = chainMaker;
+
+//console.log(chainMaker.addLink('GHI').addLink(null).reverseChain().addLink(333).reverseChain().reverseChain().addLink(0).reverseChain().reverseChain().addLink('GHI').finishChain()/* , '( null )~~( GHI )~~( 333 )~~( 0 )~~( GHI )' */);
