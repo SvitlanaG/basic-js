@@ -1,4 +1,4 @@
-const { NotImplementedError } = require("../extensions/index.js");
+const { NotImplementedError } = require('../lib');
 
 /**
  * Extract season from given date and expose the enemy scout!

@@ -1,4 +1,4 @@
-const { NotImplementedError } = require("../extensions/index.js");
+const { NotImplementedError } = require('../lib');
 
 /**
  * Implement class VigenereCipheringMachine that allows us to create
@@ -99,5 +99,7 @@ class VigenereCipheringMachine {
 }
 
 module.exports = {
+  directMachine: new VigenereCipheringMachine(),
+  reverseMachine: new VigenereCipheringMachine(false),
   VigenereCipheringMachine,
 };
